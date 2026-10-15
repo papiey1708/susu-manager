@@ -6,19 +6,19 @@
 
 
 
-\- The program manages one group per session.
+\- One group is managed per session.
 
-\- Members receive payouts in the order they joined.
+\- Members receive payouts in joining order.
 
 \- Names cannot be empty.
 
-\- Names are compared without capitalization differences and without
+\- Names are compared ignoring capitalization and surrounding spaces.
 
-&#x20; surrounding spaces. "Ama" and " ama " refer to the same member.
+\- "Ama" and " ama " identify the same member.
 
 \- Members can join until the first valid contribution is recorded.
 
-\- After that contribution, membership is locked.
+\- That first contribution locks membership.
 
 \- Members cannot be removed or renamed.
 
@@ -28,23 +28,25 @@
 
 
 
-\- The weekly contribution is fixed when the group is created.
+\- The weekly amount is fixed when the group is created.
 
-\- Amounts must be positive, finite and have no more than two decimal places.
+\- Amounts must be positive and finite.
+
+\- Inputs allow no more than two decimal places.
 
 \- Money input uses a decimal point, for example 50.00.
 
-\- Decimal reads the amount exactly; integer pesewas store the value.
+\- Decimal reads inputs exactly; integer pesewas store the money.
 
-\- Partial payments and multiple payments in the same week are allowed.
+\- Partial payments and multiple payments per week are allowed.
 
-\- Payments cannot exceed the member's outstanding balance.
+\- A payment cannot exceed the member's outstanding balance.
 
-\- Payments are accepted only for the current week.
+\- Only payments for the current week are accepted.
 
 \- Past and future week payments are rejected.
 
-\- Members continue contributing after receiving their own payout.
+\- Members continue contributing after receiving their payout.
 
 
 
@@ -52,27 +54,25 @@
 
 
 
-\- A group with no members cannot close a week.
+\- A group without members cannot close a week.
 
-\- If anyone owes money, closing is refused and all outstanding balances
+\- If anyone owes money, closing is refused and outstanding balances are reported.
 
-&#x20; are reported.
+\- Refusing to close leaves the week, contributions and payout history unchanged.
 
-\- A refused closing does not change the week, payments or payout history.
+\- Once everyone has paid, the full pot is recorded for the next recipient.
 
-\- When everyone has paid, the full pot is recorded for the next recipient.
+\- The week advances and current contribution balances reset.
 
-\- The current week then advances and weekly payment balances reset.
+\- One cycle lasts as many weeks as there are members.
 
-\- A cycle lasts as many weeks as there are members.
+\- The cycle ends after every member receives one payout.
 
-\- After everyone receives one payout, the cycle ends.
+\- The final report shows the advanced week number and marks the cycle complete.
 
-\- The final report displays the advanced week number and marks the cycle
+\- Completed cycles reject further contributions and weekly closings.
 
-&#x20; complete. No further contributions or weekly closings are accepted.
-
-\- Payouts are bookkeeping records, not real bank or mobile-money transfers.
+\- Payouts are records only; no real money is transferred.
 
 
 
@@ -80,15 +80,15 @@
 
 
 
-\- SusuGroup contains the savings rules.
+\- susu.py contains the savings rules and report generation.
 
-\- main.py handles terminal input and displays messages.
+\- main.py handles the text menu and user input.
 
-\- Keeping these separate lets automated tests check the rules without
+\- Separating these allows the rules to be tested without menu interaction.
 
-&#x20; entering information through the menu.
+\- Tests use Python's built-in unittest module.
 
-\- The project uses Python's built-in unittest module.
+\- No third-party packages are required.
 
 
 
@@ -96,25 +96,25 @@
 
 
 
-\- All data is kept in memory and disappears when the program exits.
+\- Data is held in memory and disappears when the program exits.
 
-\- There is no login system, database or payment-service connection.
+\- There is no database, login system or payment-service connection.
 
-\- Contributions cannot be edited or refunded.
+\- Contributions cannot be corrected or refunded.
 
 \- Only one savings cycle is supported per session.
 
-\- The report shows current balances and payout history, rather than a
+\- Reports show current balances and payout history.
 
-&#x20; permanent transaction-by-transaction contribution ledger.
-
-
-
-\## Improvements With More Time
+\- There is no permanent contribution transaction ledger.
 
 
 
-\- Save and reload groups using a file or database.
+\## Improvements with more time
+
+
+
+\- Save and reload data using a file or database.
 
 \- Keep a detailed contribution ledger.
 
@@ -124,17 +124,17 @@
 
 \- Add automated tests for menu interactions.
 
-\- Provide exportable reports.
+\- Export reports to files.
 
 
 
-\## Development Assistance
+\## Development assistance
 
 
 
-I used an AI assistant for step-by-step guidance, code examples and test
+I used an AI assistant for step-by-step guidance, code examples and test design.
 
-design. I ran the program and automated tests locally and built the
+I ran the program and automated tests locally.
 
-project through incremental Git commits.
+I developed the project through incremental Git commits.
 

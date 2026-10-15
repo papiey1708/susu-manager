@@ -2,15 +2,13 @@
 
 
 
-A Python command-line program for managing one rotating savings group.
+A Python text-menu program for managing one rotating savings group.
 
 
 
-Each member contributes the same fixed amount every week. Once everyone
+Members contribute a fixed weekly amount. Once everyone has paid in full,
 
-has paid in full, the pot is recorded as paid to the next member in joining
-
-order.
+the pot is recorded as paid to the next member in joining order.
 
 
 
@@ -20,39 +18,35 @@ order.
 
 \- Python 3.10 or newer.
 
-\- No third-party packages are required.
+\- No third-party packages are needed.
 
 
 
-\## Run the program
+\## How to run
 
 
 
-Open a terminal in the project folder and run:
+Open PowerShell in the project folder.
 
 
 
-```powershell
+Run the interactive program:
 
-py main.py
-
-```
+&#x20;   py main.py
 
 
 
-If your computer uses the `python` command instead, run:
+Run the assignment example:
+
+&#x20;   py susu.py
 
 
 
-```text
-
-python main.py
-
-```
+If your computer uses python instead of py, substitute python in these commands.
 
 
 
-Enter the weekly contribution, then use the menu:
+\## Menu options
 
 
 
@@ -68,95 +62,43 @@ Enter the weekly contribution, then use the menu:
 
 
 
-Add all members before recording the first payment.
+Add every member before recording the first contribution.
+
+Enter amounts in GHS using a decimal point, such as 50.00.
 
 
 
-Data stays in memory and is lost when the program exits.
-
-Payouts are recorded only; no actual money is transferred.
-
-
-
-\## Run the tests
+\## How to run the tests
 
 
 
 From the project folder, run:
 
-
-
-```powershell
-
-py -m unittest -v
-
-```
+&#x20;   py -m unittest -v
 
 
 
-Alternatively:
+The suite contains 16 automated tests, including partial payments,
+
+blocked weekly closing, invalid payments, payout order and exact money.
 
 
 
-```text
-
-python -m unittest -v
-
-```
+\## Example
 
 
 
-There are 16 automated tests covering group creation, exact money
+Ama, Kofi and Esi each owe GHS 50.00 for week 1.
 
-calculations, member validation, partial payments, overpayments,
+Ama and Kofi pay 50.00 each. Esi pays 30.00.
 
-invalid amounts, week validation, blocked weekly closing, payout
+Closing is refused because Esi owes 20.00.
 
-order, membership locking, cycle completion and reports.
+Esi pays the remaining 20.00.
 
+Closing succeeds and Ama receives a recorded payout of GHS 150.00.
 
-
-\## Run the demonstration
-
-
-
-```powershell
-
-py susu.py
-
-```
-
-
-
-The demonstration follows the assignment example:
-
-
-
-\- Ama, Kofi and Esi each owe GHS 50.00.
-
-\- Ama and Kofi pay GHS 50.00; Esi pays GHS 30.00.
-
-\- Closing the week is refused because Esi owes GHS 20.00.
-
-\- Esi pays the remaining GHS 20.00.
-
-\- Ama receives a recorded payout of GHS 150.00.
-
-\- Week 2 begins with Kofi next.
-
-
-
-\## Project files
-
-
-
-\- `susu.py`: group rules, money handling, reports and demonstration.
-
-\- `main.py`: interactive text menu.
-
-\- `test\_susu.py`: automated tests.
-
-\- `NOTES.md`: assumptions, decisions and possible improvements.
+Week 2 begins, with Kofi next.
 
 
 
@@ -164,13 +106,43 @@ The demonstration follows the assignment example:
 
 
 
-Amounts are read using Python's Decimal type, then stored as integer
+Decimal reads monetary inputs exactly.
 
-pesewas. For example, GHS 50.00 is stored as 5000 pesewas.
+Amounts are stored and calculated as integer pesewas.
 
-Calculations do not use floating-point money values.
+GHS 50.00 is stored as 5000 pesewas.
+
+Floating-point money calculations are not used.
 
 
 
-See NOTES.md for the project's assumptions and limitations.
+\## Project files
+
+
+
+\- susu.py: savings rules, reporting and example.
+
+\- main.py: interactive text menu.
+
+\- test\_susu.py: 16 automated tests.
+
+\- NOTES.md: assumptions, decisions and improvements.
+
+\- .gitignore: excludes temporary Python files.
+
+
+
+\## Limitations
+
+
+
+Data is held in memory and is lost when the program exits.
+
+Payouts are records only; no real money is transferred.
+
+Each session supports one group and one savings cycle.
+
+
+
+See NOTES.md for further details.
 
