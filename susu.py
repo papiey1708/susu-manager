@@ -24,10 +24,31 @@ class SusuGroup:
         self.members = []
         self.current_week = 1
         self.payout_history = []
+        self.membership_locked = False
 
+    def add_member(self, name):
+        if self.membership_locked:
+            raise ValueError("Members cannot join after payments have started.")
+
+        clean_name = name.strip()
+
+        if not clean_name:
+            raise ValueError("A member name cannot be empty.")
+
+        for existing_name in self.members:
+            if existing_name.casefold() == clean_name.casefold():
+                raise ValueError("This member already exists.")
+
+        self.members.append(clean_name)
 
 if __name__ == "__main__":
     group = SusuGroup("50.00")
+    group.add_member("Ama")
+    group.add_member("Kofi")
+    group.add_member("Esi")
+    group.add_member(" ama ")
+
     print("Susu group created.")
     print(f"Weekly contribution: {group.weekly_amount} pesewas")
     print(f"Current week: {group.current_week}")
+    print("Members:", ", ".join(group.members))
